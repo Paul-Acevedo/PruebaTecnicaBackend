@@ -109,6 +109,10 @@ export function verificarValoresComunes(
   );
 }
 
+
+
+
+
 /*
 // Uso de la función:
 const array1 = [3, 6, 9, 12, 15];

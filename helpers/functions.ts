@@ -1,3 +1,6 @@
+import SeguroArray from "../api/v1/example/interfaces/seguroArray";
+import SeguroIT from "../api/v1/example/interfaces/seguro";
+
 export async function asyncForEach(array: any, callback: any) {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
@@ -52,4 +55,39 @@ export async function passwordGenerator(largo: number): Promise<string> {
     .join('');
 
   return contrasena;
+}
+
+// encontrar datos en el json
+export async function buscarDatosSeguro(array: SeguroArray[],filter:SeguroIT):Promise<SeguroArray[]> {
+  
+  return array.filter(f => {
+    
+    if (f.Edad !== filter.edad) {
+      return false;
+    }
+
+    let tasa:any;
+
+    if (filter.sexo === 'M') {
+      tasa = filter.fuma === 'S' ? f.hombreFumador : f.hombreNoFumador;
+    } else {
+      tasa = filter.fuma === 'S' ? f.mujerFumadora : f.mujerNoFumadora;
+    }
+
+    tasa = tasa || 0; 
+    const PrimaAnual = (tasa / 1000) * filter.sumaAsegurada;
+    console.log(PrimaAnual);
+
+    
+    return true;
+  });
+
+
+
+ 
+
+
+ 
+
+  
 }
