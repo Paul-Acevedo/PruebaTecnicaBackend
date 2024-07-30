@@ -7,7 +7,7 @@ export const validateLoginSchema = z.object({
 
 
 export const validateSegurosSchema = z.object({
-  edad: z.number().int().min(18),
+  edad: z.number().int().min(18).max(65),
   sumaAsegurada: z.number(),
   sexo:z.enum(['F','M']),
   fuma:z.enum(['S','N'])
