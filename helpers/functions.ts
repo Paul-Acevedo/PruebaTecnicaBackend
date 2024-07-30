@@ -1,5 +1,5 @@
-import SeguroArray from "../api/v1/example/interfaces/seguroArray";
-import SeguroIT from "../api/v1/example/interfaces/seguro";
+import SeguroArray from '../api/v1/example/interfaces/seguroArray';
+import SeguroIT from '../api/v1/example/interfaces/seguro';
 
 export async function asyncForEach(array: any, callback: any) {
   for (let index = 0; index < array.length; index++) {
@@ -58,36 +58,33 @@ export async function passwordGenerator(largo: number): Promise<string> {
 }
 
 // encontrar datos en el json
-export async function buscarDatosSeguro(array: SeguroArray[],filter:SeguroIT):Promise<SeguroArray[]> {
-  
-  return array.filter(f => {
-    
-    if (f.Edad !== filter.edad) {
-      return false;
-    }
+export async function buscarDatosSeguro(
+  array: SeguroArray[],
+  filter: SeguroIT
+): Promise<SeguroIT | null> {
 
-    let tasa:any;
+  const result = array.find((f) => f.Edad === filter.edad);
 
-    if (filter.sexo === 'M') {
-      tasa = filter.fuma === 'S' ? f.hombreFumador : f.hombreNoFumador;
-    } else {
-      tasa = filter.fuma === 'S' ? f.mujerFumadora : f.mujerNoFumadora;
-    }
+  if (!result) {
+    return null;
+  }
 
-    tasa = tasa || 0; 
-    const PrimaAnual = (tasa / 1000) * filter.sumaAsegurada;
-    console.log(PrimaAnual);
+  let tasa: any;
+  if (filter.sexo === 'M') {
+    tasa = filter.fuma === 'S' ? result.hombreFumador : result.hombreNoFumador;
+  } else {
+    tasa = filter.fuma === 'S' ? result.mujerFumadora : result.mujerNoFumadora;
+  }
 
-    
-    return true;
-  });
+  tasa = tasa || 0;
+  const primaAnual = (tasa / 1000) * filter.sumaAsegurada;
+  console.log(primaAnual);
 
-
-
- 
-
-
- 
-
-  
+  return {
+    edad: filter.edad,
+    sexo: filter.sexo,
+    fuma: filter.fuma,
+    sumaAsegurada: filter.sumaAsegurada,
+    primaAnual: primaAnual,
+  };
 }

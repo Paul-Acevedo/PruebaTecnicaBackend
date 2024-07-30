@@ -1,4 +1,5 @@
 interface SeguroIT {
+    primaAnual?:number;
     edad: number;
     sumaAsegurada: number;
     sexo: string;
