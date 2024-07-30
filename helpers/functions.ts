@@ -78,7 +78,6 @@ export async function buscarDatosSeguro(
 
   tasa = tasa || 0;
   const primaAnual = (tasa / 1000) * filter.sumaAsegurada;
-  console.log(primaAnual);
 
   return {
     primaAnual: primaAnual,
