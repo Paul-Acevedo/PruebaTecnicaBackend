@@ -81,10 +81,10 @@ export async function buscarDatosSeguro(
   console.log(primaAnual);
 
   return {
-    edad: filter.edad,
-    sexo: filter.sexo,
-    fuma: filter.fuma,
-    sumaAsegurada: filter.sumaAsegurada,
     primaAnual: primaAnual,
+    sumaAsegurada: filter.sumaAsegurada,
+    sexo: filter.sexo,
+    edad: filter.edad,
+    fuma: filter.fuma
   };
 }
