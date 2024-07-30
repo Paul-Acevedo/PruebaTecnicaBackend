@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-const sequelize = require('./database/sequelize');
+//const sequelize = require('./database/sequelize');
 
 
 import { ApiError, errorLog } from '../helpers';
